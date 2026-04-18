@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+}
+
+html, body {
+  background: #ffffff;
+  color: #111111;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Minimalist base */
+* { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* Reusable utility classes */
+.container-x {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-x { padding-left: 2rem; padding-right: 2rem; }
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.hairline { border-top: 1px solid #eeeae3; }
+.hairline-b { border-bottom: 1px solid #eeeae3; }
+
+/* Fade/slide in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fade-up-2 { animation: fadeUp 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fade-up-3 { animation: fadeUp 0.9s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fade-up-4 { animation: fadeUp 0.9s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Subtle image zoom on hover */
+.img-zoom { overflow: hidden; }
+.img-zoom img, .img-zoom > div { transition: transform 1.2s cubic-bezier(0.22,1,0.36,1); }
+.img-zoom:hover img, .img-zoom:hover > div { transform: scale(1.06); }
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 38s linear infinite; }
+
+/* Thin underline hover for nav */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: #111111;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { transform: scaleX(1); }
+
+/* Buttons */
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  background: #111111;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.btn-ink:hover { background: #000000; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border: 1px solid #111111;
+  color: #111111;
+  background: transparent;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.btn-ghost:hover { background: #111111; color: #ffffff; }
+
+/* Tiny scroll reveal using animation on body-loaded elements */
+.reveal-on-view {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal-on-view.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Decorative vertical rule */
+.vrule { width: 1px; background: #e5e1d8; }
+
+/* Policy prose */
+.prose-policy h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.prose-policy h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.prose-policy p {
+  color: rgba(17,17,17,0.78);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.prose-policy ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 1.25rem;
+}
+.prose-policy ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: rgba(17,17,17,0.8);
+  line-height: 1.7;
+  margin-bottom: 0.4rem;
+}
+.prose-policy ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.8em;
+  width: 0.5rem; height: 1px;
+  background: #bfb8a8;
+}
+.prose-policy strong { color: #111; font-weight: 500; }
