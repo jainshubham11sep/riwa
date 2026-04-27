@@ -30,16 +30,16 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white/90 backdrop-blur transition-all ${
+      className={`sticky top-0 z-50 bg-[#fdf5ec]/90 backdrop-blur transition-all ${
         scrolled ? "border-b border-stone" : "border-b border-transparent"
       }`}
     >
       <div className="container-x flex items-center justify-between py-5">
         <Link href="/" className="flex items-center">
           <img
-            src="/images/Riva%20India%20Final%20logo%20png.png"
+            src="/images/riwa-logo.png"
             alt="Riwa India"
-            className="h-10 w-auto"
+            className="h-16 w-auto"
           />
         </Link>
 

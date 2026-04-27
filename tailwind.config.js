@@ -12,10 +12,11 @@ module.exports = {
       },
       colors: {
         ink: "#111111",
-        bone: "#FAFAF7",
-        stone: "#E9E6DF",
-        clay: "#BFB8A8",
-        sage: "#7D8471",
+        brand: "#4a2c14",
+        bone: "#f5e8d8",
+        stone: "#e8d0b8",
+        clay: "#a07850",
+        sage: "#8a7060",
       },
       letterSpacing: {
         widest2: "0.25em",

@@ -3,13 +3,13 @@ import Link from "next/link";
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-24 border-t border-stone bg-white">
+    <footer className="mt-24 border-t border-stone bg-[#fdf5ec]">
       <div className="container-x py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <img
-            src="/images/Riva%20India%20Final%20logo%20png.png"
+            src="/images/riwa-logo.png"
             alt="Riwa India"
-            className="h-14 w-auto"
+            className="h-24 w-auto"
           />
           <p className="eyebrow mt-3">Jaipur · Rajasthan · India</p>
           <p className="mt-6 text-ink/70 max-w-md leading-relaxed">

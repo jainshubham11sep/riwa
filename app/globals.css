@@ -8,7 +8,7 @@
 }
 
 html, body {
-  background: #ffffff;
+  background: #fdf5ec;
   color: #111111;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -47,8 +47,8 @@ img { max-width: 100%; display: block; }
   line-height: 1.05;
 }
 
-.hairline { border-top: 1px solid #eeeae3; }
-.hairline-b { border-bottom: 1px solid #eeeae3; }
+.hairline { border-top: 1px solid #e8d0b8; }
+.hairline-b { border-bottom: 1px solid #e8d0b8; }
 
 /* Fade/slide in */
 @keyframes fadeUp {
@@ -82,7 +82,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 1px;
-  background: #111111;
+  background: #4a2c14;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s ease;
@@ -96,29 +96,29 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.4rem;
-  background: #111111;
+  background: #4a2c14;
   color: #ffffff;
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   transition: background 0.3s ease, transform 0.3s ease;
 }
-.btn-ink:hover { background: #000000; transform: translateY(-1px); }
+.btn-ink:hover { background: #3a1e08; transform: translateY(-1px); }
 
 .btn-ghost {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.4rem;
-  border: 1px solid #111111;
-  color: #111111;
+  border: 1px solid #4a2c14;
+  color: #4a2c14;
   background: transparent;
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   transition: background 0.3s ease, color 0.3s ease;
 }
-.btn-ghost:hover { background: #111111; color: #ffffff; }
+.btn-ghost:hover { background: #4a2c14; color: #ffffff; }
 
 /* Tiny scroll reveal using animation on body-loaded elements */
 .reveal-on-view {
