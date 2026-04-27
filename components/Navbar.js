@@ -35,9 +35,12 @@ export default function Navbar() {
       }`}
     >
       <div className="container-x flex items-center justify-between py-5">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="display text-[28px] leading-none tracking-tight">Riwa</span>
-          <span className="eyebrow text-[10px]">India</span>
+        <Link href="/" className="flex items-center">
+          <img
+            src="/images/Riva%20India%20Final%20logo%20png.png"
+            alt="Riwa India"
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">

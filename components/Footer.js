@@ -6,8 +6,12 @@ export default function Footer() {
     <footer className="mt-24 border-t border-stone bg-white">
       <div className="container-x py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <div className="display text-4xl leading-none">Riwa India</div>
-          <p className="eyebrow mt-2">Jaipur · Rajasthan · India</p>
+          <img
+            src="/images/Riva%20India%20Final%20logo%20png.png"
+            alt="Riwa India"
+            className="h-14 w-auto"
+          />
+          <p className="eyebrow mt-3">Jaipur · Rajasthan · India</p>
           <p className="mt-6 text-ink/70 max-w-md leading-relaxed">
             A manufacturing and export house crafting womenswear, menswear,
             kidswear, accessories, home furnishings and printed fabrics for
