@@ -34,12 +34,12 @@ export default function Navbar() {
         scrolled ? "border-b border-stone" : "border-b border-transparent"
       }`}
     >
-      <div className="container-x flex items-center justify-between py-2 md:py-3">
+      <div className="container-x flex items-center justify-between py-1 md:py-2">
         <Link href="/" className="flex items-center">
           <img
             src="/images/riwa-logo.png"
             alt="Riwa India"
-            className="h-9 w-auto md:h-16"
+            className="h-20 w-auto md:h-28"
           />
         </Link>
 
