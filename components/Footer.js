@@ -9,7 +9,7 @@ export default function Footer() {
           <img
             src="/images/riwa-logo.png"
             alt="Riwa India"
-            className="h-40 w-auto"
+            className="w-72 h-24 object-cover object-center"
           />
           <p className="eyebrow mt-3">Jaipur · Rajasthan · India</p>
           <p className="mt-6 text-ink/70 max-w-md leading-relaxed">
