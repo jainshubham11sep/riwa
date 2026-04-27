@@ -39,7 +39,7 @@ export default function Navbar() {
           <img
             src="/images/riwa-logo.png"
             alt="Riwa India"
-            className="h-24 w-auto"
+            className="h-36 w-64 object-contain"
           />
         </Link>
 
