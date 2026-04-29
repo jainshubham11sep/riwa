@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 export default function SubcategoryGallery({ subcategories }) {
   const [active, setActive] = useState(null); // { image, name, flatIndex }
 
-  // Flatten all images for prev/next navigation
   const flat = subcategories.flatMap((s) =>
     s.images.map((image) => ({ image, name: s.name }))
   );
@@ -38,33 +37,38 @@ export default function SubcategoryGallery({ subcategories }) {
 
   return (
     <>
-      <div className="divide-y divide-stone">
+      <div className="space-y-16">
         {subcategories.map((sub) => {
           const startIdx = flatIdx;
           flatIdx += sub.images.length;
 
+          // Pick column count based on number of images
+          const cols =
+            sub.images.length === 1
+              ? "grid-cols-1 md:grid-cols-2"
+              : sub.images.length === 2
+              ? "grid-cols-2"
+              : "grid-cols-2 md:grid-cols-3";
+
           return (
-            <div
-              key={sub.name}
-              className="flex flex-col md:flex-row md:items-start gap-4 md:gap-10 py-10"
-            >
-              {/* Subcategory label */}
-              <div className="md:w-48 md:shrink-0 md:pt-1">
-                <h3 className="display text-2xl">{sub.name}</h3>
-                <p className="text-xs text-ink/50 mt-1 eyebrow">
-                  {sub.images.length} {sub.images.length === 1 ? "image" : "images"}
-                </p>
+            <div key={sub.name}>
+              {/* Subcategory heading */}
+              <div className="flex items-center gap-4 mb-6">
+                <h3 className="display text-2xl md:text-3xl">{sub.name}</h3>
+                <span className="flex-1 h-px bg-stone" />
               </div>
 
               {/* Images */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-1">
+              <div className={`grid ${cols} gap-4 md:gap-6`}>
                 {sub.images.map((src, imgIdx) => {
                   const fi = startIdx + imgIdx;
                   return (
                     <div
                       key={src}
                       className="group cursor-zoom-in"
-                      onClick={() => setActive({ image: src, name: sub.name, flatIndex: fi })}
+                      onClick={() =>
+                        setActive({ image: src, name: sub.name, flatIndex: fi })
+                      }
                     >
                       <div className="overflow-hidden aspect-[3/4]">
                         <img

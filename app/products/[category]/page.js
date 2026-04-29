@@ -50,6 +50,16 @@ export default function CategoryPage({ params }) {
         </div>
       </section>
 
+      <section className="container-x py-20">
+        <SectionHeader
+          eyebrow="Gallery"
+          title={`${c.name} — a closer look.`}
+        />
+        <div className="mt-12">
+          <SubcategoryGallery subcategories={c.subcategories} />
+        </div>
+      </section>
+
       <section className="bg-bone">
         <div className="container-x py-20 grid md:grid-cols-12 gap-12">
           <div className="md:col-span-5 reveal-on-view">
@@ -65,16 +75,6 @@ export default function CategoryPage({ params }) {
               ))}
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section className="container-x py-24">
-        <SectionHeader
-          eyebrow="Gallery"
-          title={`${c.name} — a closer look.`}
-        />
-        <div className="mt-12">
-          <SubcategoryGallery subcategories={c.subcategories} />
         </div>
       </section>
 
