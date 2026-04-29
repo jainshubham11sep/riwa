@@ -1,28 +1,12 @@
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
+import ProductGrid from "@/components/ProductGrid";
 
 export const metadata = {
   title: "Products",
   description:
     "Explore Riwa India's product range — womenswear, menswear, kidswear, accessories, home furnishings and more.",
 };
-
-const PRODUCTS = [
-  { name: "Tops", image: "/images/Tops.jpeg" },
-  { name: "Tops", image: "/images/Tops_2.jpeg" },
-  { name: "Dresses", image: "/images/Dresses.jpeg" },
-  { name: "Dresses", image: "/images/Dresses2.jpeg" },
-  { name: "Jackets", image: "/images/Jackets.jpeg" },
-  { name: "Menswear", image: "/images/Menswear.png" },
-  { name: "Kidswear", image: "/images/Kidswear.jpeg" },
-  { name: "Bags", image: "/images/Bags.jpeg" },
-  { name: "Scarves & Accessories", image: "/images/Scarves%20%26%20Accessories.jpeg" },
-  { name: "Wash Bags & Accessories", image: "/images/Wash%20bags%20%26%20Accessories.jpeg" },
-  { name: "Bedding Sets", image: "/images/Bedding%20Sets.jpeg" },
-  { name: "Table Linens", image: "/images/Table%20Linens.jpeg" },
-  { name: "Table Linens", image: "/images/Table%20Linens%202.jpeg" },
-  { name: "Curtains", image: "/images/Curtains.jpeg" },
-];
 
 export default function ProductsIndex() {
   return (
@@ -39,28 +23,9 @@ export default function ProductsIndex() {
         </p>
       </section>
 
-      {/* Product image grid */}
+      {/* Product image grid with lightbox */}
       <section className="container-x pb-24">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {PRODUCTS.map((p, i) => (
-            <div
-              key={`${p.name}-${i}`}
-              className="group reveal-on-view"
-              style={{ transitionDelay: `${i * 40}ms` }}
-            >
-              <div className="overflow-hidden aspect-[3/4]">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="mt-3">
-                <p className="display text-xl">{p.name}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProductGrid />
       </section>
 
       <section className="container-x pb-24">
