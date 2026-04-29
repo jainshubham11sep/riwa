@@ -21,7 +21,8 @@ export default function CategoryPage({ params }) {
   const idx = CATEGORIES.findIndex((c) => c.slug === params.category);
   if (idx === -1) notFound();
   const c = CATEGORIES[idx];
-  const next = CATEGORIES[(idx + 1) % CATEGORIES.length];
+  // Show 3 other categories as suggestions
+  const related = CATEGORIES.filter((_, i) => i !== idx).slice(0, 3);
 
   return (
     <>
@@ -84,15 +85,31 @@ export default function CategoryPage({ params }) {
         </div>
       </section>
 
-      <section className="container-x pb-24">
-        <div className="hairline pt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <p className="eyebrow">Next category</p>
-            <Link href={`/products/${next.slug}`} className="display text-4xl md:text-5xl hover:underline">
-              {next.name} →
-            </Link>
+      <section className="bg-bone">
+        <div className="container-x py-20">
+          <div className="flex items-end justify-between gap-6 mb-10">
+            <SectionHeader eyebrow="Explore more" title="Other categories." />
+            <Link href="/products" className="btn-ghost shrink-0">All products</Link>
           </div>
-          <Link href="/products" className="btn-ghost">All products</Link>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {related.map((r, i) => (
+              <Link
+                key={r.slug}
+                href={`/products/${r.slug}`}
+                className="group reveal-on-view block"
+                style={{ transitionDelay: `${i * 60}ms` }}
+              >
+                <Img src={r.image} alt={r.name} ratio="aspect-[4/5]" />
+                <div className="mt-4 flex items-baseline justify-between">
+                  <h3 className="display text-xl md:text-2xl">{r.name}</h3>
+                  <span className="eyebrow opacity-0 group-hover:opacity-100 transition-opacity text-sm">
+                    View →
+                  </span>
+                </div>
+                <p className="mt-1 text-[13px] text-ink/60 leading-relaxed">{r.short}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </>

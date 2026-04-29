@@ -42,8 +42,8 @@ export default function AboutPage() {
         </div>
         <div className="md:col-span-5 reveal-on-view">
           <Img
-            src="https://images.unsplash.com/photo-1743229995505-d6374996df1c?auto=format&fit=crop&w=2000&q=85"
-            alt="Woman in traditional Indian kurti — the craft at the heart of Riwa India"
+            src="/images/Dresses.jpeg"
+            alt="Garments crafted at Riwa India"
             ratio="aspect-[4/5]"
           />
         </div>
@@ -78,8 +78,8 @@ export default function AboutPage() {
       <section className="container-x py-24 grid md:grid-cols-12 gap-12 items-center">
         <div className="md:col-span-5 reveal-on-view order-2 md:order-1">
           <Img
-            src="https://images.unsplash.com/photo-1741176505195-e2b04b203643?auto=format&fit=crop&w=2000&q=85"
-            alt="Workers producing kurtis at the Riwa India manufacturing facility"
+            src="/images/labour%201.jpeg"
+            alt="Workers producing garments at the Riwa India facility"
             ratio="aspect-[4/5]"
           />
         </div>

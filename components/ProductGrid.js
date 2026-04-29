@@ -19,7 +19,6 @@ const PRODUCTS = [
   { name: "Curtains", image: "/images/Curtains.jpeg" },
 ];
 
-// Group by name, preserving original flat index for lightbox navigation
 const GROUPS = PRODUCTS.reduce((acc, p, i) => {
   const g = acc.find((x) => x.name === p.name);
   if (g) g.items.push({ ...p, index: i });
@@ -28,7 +27,7 @@ const GROUPS = PRODUCTS.reduce((acc, p, i) => {
 }, []);
 
 export default function ProductGrid() {
-  const [active, setActive] = useState(null); // { image, name, index }
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     if (!active) return;
@@ -56,14 +55,23 @@ export default function ProductGrid() {
 
   return (
     <>
-      {/* Grouped sections */}
-      <div className="space-y-14">
+      {/* Grouped rows — name on left, images on right (desktop) */}
+      <div className="divide-y divide-stone">
         {GROUPS.map((group) => (
-          <div key={group.name}>
-            <h2 className="display text-2xl md:text-3xl mb-5 pb-3 border-b border-stone">
-              {group.name}
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div
+            key={group.name}
+            className="flex flex-col md:flex-row md:items-start gap-4 md:gap-10 py-10"
+          >
+            {/* Category label */}
+            <div className="md:w-44 md:shrink-0 md:pt-1">
+              <h2 className="display text-2xl">{group.name}</h2>
+              <p className="text-xs text-ink/50 mt-1 eyebrow">
+                {group.items.length} {group.items.length === 1 ? "image" : "images"}
+              </p>
+            </div>
+
+            {/* Images */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-1">
               {group.items.map((p) => (
                 <div
                   key={p.index}
@@ -97,7 +105,6 @@ export default function ProductGrid() {
           >
             ×
           </button>
-
           <button
             className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none z-10 px-2"
             onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -105,7 +112,6 @@ export default function ProductGrid() {
           >
             ‹
           </button>
-
           <div
             className="relative max-w-[92vw] max-h-[88vh] flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
@@ -119,7 +125,6 @@ export default function ProductGrid() {
               {active.name}
             </p>
           </div>
-
           <button
             className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none z-10 px-2"
             onClick={(e) => { e.stopPropagation(); next(); }}
