@@ -19,10 +19,17 @@ const PRODUCTS = [
   { name: "Curtains", image: "/images/Curtains.jpeg" },
 ];
 
-export default function ProductGrid() {
-  const [active, setActive] = useState(null); // { src, name, index }
+// Group by name, preserving original flat index for lightbox navigation
+const GROUPS = PRODUCTS.reduce((acc, p, i) => {
+  const g = acc.find((x) => x.name === p.name);
+  if (g) g.items.push({ ...p, index: i });
+  else acc.push({ name: p.name, items: [{ ...p, index: i }] });
+  return acc;
+}, []);
 
-  // Close on Escape key
+export default function ProductGrid() {
+  const [active, setActive] = useState(null); // { image, name, index }
+
   useEffect(() => {
     if (!active) return;
     const onKey = (e) => { if (e.key === "Escape") setActive(null); };
@@ -30,42 +37,48 @@ export default function ProductGrid() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active]);
 
-  // Prevent body scroll when lightbox is open
   useEffect(() => {
     document.body.style.overflow = active ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [active]);
 
   const prev = () =>
-    setActive((a) => PRODUCTS[(a.index - 1 + PRODUCTS.length) % PRODUCTS.length]
-      ? { ...PRODUCTS[(a.index - 1 + PRODUCTS.length) % PRODUCTS.length], index: (a.index - 1 + PRODUCTS.length) % PRODUCTS.length }
-      : a);
+    setActive((a) => {
+      const i = (a.index - 1 + PRODUCTS.length) % PRODUCTS.length;
+      return { ...PRODUCTS[i], index: i };
+    });
 
   const next = () =>
-    setActive((a) => PRODUCTS[(a.index + 1) % PRODUCTS.length]
-      ? { ...PRODUCTS[(a.index + 1) % PRODUCTS.length], index: (a.index + 1) % PRODUCTS.length }
-      : a);
+    setActive((a) => {
+      const i = (a.index + 1) % PRODUCTS.length;
+      return { ...PRODUCTS[i], index: i };
+    });
 
   return (
     <>
-      {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {PRODUCTS.map((p, i) => (
-          <div
-            key={`${p.name}-${i}`}
-            className="group reveal-on-view cursor-zoom-in"
-            style={{ transitionDelay: `${i * 40}ms` }}
-            onClick={() => setActive({ ...p, index: i })}
-          >
-            <div className="overflow-hidden aspect-[3/4]">
-              <img
-                src={p.image}
-                alt={p.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="mt-3">
-              <p className="display text-xl">{p.name}</p>
+      {/* Grouped sections */}
+      <div className="space-y-14">
+        {GROUPS.map((group) => (
+          <div key={group.name}>
+            <h2 className="display text-2xl md:text-3xl mb-5 pb-3 border-b border-stone">
+              {group.name}
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {group.items.map((p) => (
+                <div
+                  key={p.index}
+                  className="group cursor-zoom-in"
+                  onClick={() => setActive(p)}
+                >
+                  <div className="overflow-hidden aspect-[3/4]">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         ))}
@@ -77,7 +90,6 @@ export default function ProductGrid() {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90"
           onClick={() => setActive(null)}
         >
-          {/* Close */}
           <button
             className="absolute top-4 right-4 text-white/80 hover:text-white text-4xl leading-none z-10"
             onClick={() => setActive(null)}
@@ -86,7 +98,6 @@ export default function ProductGrid() {
             ×
           </button>
 
-          {/* Prev */}
           <button
             className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none z-10 px-2"
             onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -95,7 +106,6 @@ export default function ProductGrid() {
             ‹
           </button>
 
-          {/* Image */}
           <div
             className="relative max-w-[92vw] max-h-[88vh] flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
@@ -110,7 +120,6 @@ export default function ProductGrid() {
             </p>
           </div>
 
-          {/* Next */}
           <button
             className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl leading-none z-10 px-2"
             onClick={(e) => { e.stopPropagation(); next(); }}
