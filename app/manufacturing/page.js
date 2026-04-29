@@ -68,6 +68,51 @@ export default function ManufacturingPage() {
         </div>
       </section>
 
+      {/* In Process */}
+      <section className="bg-bone">
+        <div className="container-x py-24">
+          <SectionHeader
+            eyebrow="In process"
+            title="From brief to production."
+          />
+          {/* Process flow */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-3">
+            {[
+              "Tech pack / CAD",
+              "Print strikeoffs / labdips",
+              "Raw material sourcing and approvals",
+              "Sampling",
+              "SMS / Photoshoot samples",
+              "Production",
+            ].map((step, i, arr) => (
+              <span key={step} className="flex items-center gap-3">
+                <span className="text-sm md:text-base font-medium text-ink">{step}</span>
+                {i < arr.length - 1 && (
+                  <span className="text-clay text-lg font-light">→</span>
+                )}
+              </span>
+            ))}
+          </div>
+          {/* Labour images */}
+          <div className="mt-12 grid md:grid-cols-2 gap-5">
+            <div className="reveal-on-view overflow-hidden">
+              <img
+                src="/images/labour%201.jpeg"
+                alt="Workers producing garments at Riwa India"
+                className="w-full aspect-[4/3] object-cover"
+              />
+            </div>
+            <div className="reveal-on-view overflow-hidden" style={{ transitionDelay: "80ms" }}>
+              <img
+                src="/images/labour%202.jpeg"
+                alt="Manufacturing in progress at Riwa India"
+                className="w-full aspect-[4/3] object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process strip */}
       <section className="bg-ink text-white">
         <div className="container-x py-24">
