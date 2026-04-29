@@ -92,8 +92,8 @@ export default function HomePage() {
       <section className="container-x py-24 grid md:grid-cols-12 gap-12 items-center">
         <div className="md:col-span-5 reveal-on-view">
           <Img
-            src="https://images.unsplash.com/photo-1741183392804-a37864e6a6d9?auto=format&fit=crop&w=2000&q=85"
-            alt="Workers producing kurtis at the Riwa India manufacturing facility"
+            src="/images/labour%201.jpeg"
+            alt="Workers producing garments at Riwa India"
             ratio="aspect-[4/5]"
           />
         </div>
