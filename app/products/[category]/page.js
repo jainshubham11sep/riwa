@@ -71,14 +71,15 @@ export default function CategoryPage({ params }) {
           eyebrow="Gallery"
           title={`${c.name} — a closer look.`}
         />
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {c.gallery.map((src, i) => (
-            <Img
-              key={src}
-              src={src}
-              alt={`${c.name} — image ${i + 1}`}
-              ratio="aspect-[4/5]"
-            />
+            <div key={src} className="reveal-on-view" style={{ transitionDelay: `${i * 60}ms` }}>
+              <Img
+                src={src}
+                alt={`${c.name} — image ${i + 1}`}
+                ratio="aspect-[3/4]"
+              />
+            </div>
           ))}
         </div>
       </section>
