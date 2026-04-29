@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Img from "@/components/Img";
 import SectionHeader from "@/components/SectionHeader";
+import SubcategoryGallery from "@/components/SubcategoryGallery";
 import { CATEGORIES } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -72,16 +73,8 @@ export default function CategoryPage({ params }) {
           eyebrow="Gallery"
           title={`${c.name} — a closer look.`}
         />
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {c.gallery.map((src, i) => (
-            <div key={src} className="reveal-on-view" style={{ transitionDelay: `${i * 60}ms` }}>
-              <Img
-                src={src}
-                alt={`${c.name} — image ${i + 1}`}
-                ratio="aspect-[3/4]"
-              />
-            </div>
-          ))}
+        <div className="mt-12">
+          <SubcategoryGallery subcategories={c.subcategories} />
         </div>
       </section>
 
